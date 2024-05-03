@@ -1,0 +1,509 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "id": "909209e3-f6e9-4df6-91b4-7241ad3af370",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "appointments": {
+      "name": "appointments",
+      "columns": {
+        "codApp": {
+          "name": "codApp",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "codPat": {
+          "name": "codPat",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "codA": {
+          "name": "codA",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "codDoc": {
+          "name": "codDoc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "codL": {
+          "name": "codL",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "codapp_index": {
+          "name": "codapp_index",
+          "columns": [
+            "codApp"
+          ],
+          "isUnique": false
+        },
+        "pdl_unique": {
+          "name": "pdl_unique",
+          "columns": [
+            "codPat",
+            "codDoc",
+            "codL"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "appointments_codPat_patients_codPat_fk": {
+          "name": "appointments_codPat_patients_codPat_fk",
+          "tableFrom": "appointments",
+          "tableTo": "patients",
+          "columnsFrom": [
+            "codPat"
+          ],
+          "columnsTo": [
+            "codPat"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "appointments_codA_areas_codA_fk": {
+          "name": "appointments_codA_areas_codA_fk",
+          "tableFrom": "appointments",
+          "tableTo": "areas",
+          "columnsFrom": [
+            "codA"
+          ],
+          "columnsTo": [
+            "codA"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "appointments_codDoc_doctors_codDoc_fk": {
+          "name": "appointments_codDoc_doctors_codDoc_fk",
+          "tableFrom": "appointments",
+          "tableTo": "doctors",
+          "columnsFrom": [
+            "codDoc"
+          ],
+          "columnsTo": [
+            "codDoc"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "appointments_codL_lapseTime_codL_fk": {
+          "name": "appointments_codL_lapseTime_codL_fk",
+          "tableFrom": "appointments",
+          "tableTo": "lapseTime",
+          "columnsFrom": [
+            "codL"
+          ],
+          "columnsTo": [
+            "codL"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "areas": {
+      "name": "areas",
+      "columns": {
+        "codA": {
+          "name": "codA",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nameA": {
+          "name": "nameA",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "lenA": {
+          "name": "lenA",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "areas_nameA_unique": {
+          "name": "areas_nameA_unique",
+          "columns": [
+            "nameA"
+          ],
+          "isUnique": true
+        },
+        "coda_index": {
+          "name": "coda_index",
+          "columns": [
+            "codA"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "doctors": {
+      "name": "doctors",
+      "columns": {
+        "codDoc": {
+          "name": "codDoc",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nameDoc": {
+          "name": "nameDoc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "lastNameD": {
+          "name": "lastNameD",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "codA": {
+          "name": "codA",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "credentialsDoc": {
+          "name": "credentialsDoc",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "name_index": {
+          "name": "name_index",
+          "columns": [
+            "codDoc"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "doctors_codA_areas_codA_fk": {
+          "name": "doctors_codA_areas_codA_fk",
+          "tableFrom": "doctors",
+          "tableTo": "areas",
+          "columnsFrom": [
+            "codA"
+          ],
+          "columnsTo": [
+            "codA"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "doctors_credentialsDoc_userCredentials_id_fk": {
+          "name": "doctors_credentialsDoc_userCredentials_id_fk",
+          "tableFrom": "doctors",
+          "tableTo": "userCredentials",
+          "columnsFrom": [
+            "credentialsDoc"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "lapseTime": {
+      "name": "lapseTime",
+      "columns": {
+        "codL": {
+          "name": "codL",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "startL": {
+          "name": "startL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "CURRENT_TIME"
+        },
+        "dayL": {
+          "name": "dayL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "CURRENT_DATE"
+        }
+      },
+      "indexes": {
+        "codL_index": {
+          "name": "codL_index",
+          "columns": [
+            "codL"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "patients": {
+      "name": "patients",
+      "columns": {
+        "codPat": {
+          "name": "codPat",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "namePat": {
+          "name": "namePat",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "lastNameP": {
+          "name": "lastNameP",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ageP": {
+          "name": "ageP",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "credentialsPat": {
+          "name": "credentialsPat",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "codpat_index": {
+          "name": "codpat_index",
+          "columns": [
+            "codPat"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "patients_credentialsPat_userCredentials_id_fk": {
+          "name": "patients_credentialsPat_userCredentials_id_fk",
+          "tableFrom": "patients",
+          "tableTo": "userCredentials",
+          "columnsFrom": [
+            "credentialsPat"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "userCredentials": {
+      "name": "userCredentials",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(current_timestamp)"
+        }
+      },
+      "indexes": {
+        "idCredentials_index": {
+          "name": "idCredentials_index",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "workingTime": {
+      "name": "workingTime",
+      "columns": {
+        "idWorklapse": {
+          "name": "idWorklapse",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "codDoc": {
+          "name": "codDoc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idWorkingTime_index": {
+          "name": "idWorkingTime_index",
+          "columns": [
+            "idWorklapse"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "workingTime_idWorklapse_workLapses_id_fk": {
+          "name": "workingTime_idWorklapse_workLapses_id_fk",
+          "tableFrom": "workingTime",
+          "tableTo": "workLapses",
+          "columnsFrom": [
+            "idWorklapse"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "workingTime_codDoc_doctors_codDoc_fk": {
+          "name": "workingTime_codDoc_doctors_codDoc_fk",
+          "tableFrom": "workingTime",
+          "tableTo": "doctors",
+          "columnsFrom": [
+            "codDoc"
+          ],
+          "columnsTo": [
+            "codDoc"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "workLapses": {
+      "name": "workLapses",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "weekDay": {
+          "name": "weekDay",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "start": {
+          "name": "start",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "end": {
+          "name": "end",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idWorkLapses_index": {
+          "name": "idWorkLapses_index",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
+        },
+        "lapseDay_unique": {
+          "name": "lapseDay_unique",
+          "columns": [
+            "weekDay",
+            "start",
+            "end"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
